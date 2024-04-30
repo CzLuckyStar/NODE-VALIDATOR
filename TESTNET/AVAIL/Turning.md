@@ -44,7 +44,7 @@ tar -xf x86_64-ubuntu-2204-avail-node.tar.gz
 ```
 **Step 11: run node**
 ```php
-./avail-node --chain turing --name "Yourname_VNBnode" --validator -d ./node-data
+./avail-node --chain turing --name "Yourname" --validator -d ./node-data
 ```
 CTRL + C to escape
 
@@ -53,7 +53,7 @@ CTRL + C to escape
 sudo nano /etc/systemd/system/availd.service
 ```
 *Copy and Paste the content of service file as:*
-*Replace yourname in “Yourname_VNBnode”.*
+*Replace yourname in “Yourname”.*
 ```php
 [Unit]
 Description=Avail Validator
@@ -61,7 +61,7 @@ After=network.target
 StartLimitIntervalSec=0
 [Service]
 User=root
-ExecStart= /root/avail/avail-node -d /root/avail/node-data --chain turing --validator --name "✅Your-Name|VNBnode✅"
+ExecStart= /root/avail/avail-node -d /root/avail/node-data --chain turing --validator --name "Your-Name"
 Restart=always
 RestartSec=120
 [Install]
