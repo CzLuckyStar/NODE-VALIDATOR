@@ -1,5 +1,5 @@
 
-# Side-Protocol (Testnet2-2)
+# Side-Protocol (S2-testnet-2)
 
 Update system
 ```
@@ -39,6 +39,10 @@ sided version
 ```
 Initialize Node: Replace NodeName with your own moniker.
 ```
+sided init NodeName
+```
+OR:
+```
 sided init NodeName --chain-id=S2-testnet-2
 ```
 Here's your tutorial with the commands formatted for clarity:
@@ -59,10 +63,26 @@ Expected output:
 
 3. Set up seeds:
 ```sh
-582dedd866dd77f25ac0575118cf32df1ee50f98@202.182.119.24:26656
+SEEDS="582dedd866dd77f25ac0575118cf32df1ee50f98@202.182.119.24:26656"
+PEERS="582dedd866dd77f25ac0575118cf32df1ee50f98@202.182.119.24:26656"
+sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.side/config/config.toml
+```
+4. Set Pruning, Enable Prometheus, Gas Price, and Indexer
+```
+PRUNING="custom"
+PRUNING_KEEP_RECENT="100"
+PRUNING_INTERVAL="19"
+sed -i -e "s/^pruning *=.*/pruning = \"$PRUNING\"/" $HOME/.side/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \
+\"$PRUNING_KEEP_RECENT\"/" $HOME/.side/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
+\"$PRUNING_INTERVAL\"/" $HOME/.side/config/app.toml
+sed -i -e 's|^indexer *=.*|indexer = "null"|' $HOME/.side/config/config.toml
+sed -i 's|^prometheus *=.*|prometheus = true|' $HOME/.side/config/config.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.5uside\"/" $HOME/.side/config/app.toml
 ```
 
-4. Start your node:
+5. Start your node:
 ```sh
 sided version
 commit: 22e123457317f8edc949739c7310ea991b7a8100
@@ -76,7 +96,7 @@ version: 0.8.1
 sided start
 ```
 
-Hoac:
+OR:
 ```sh
 sudo systemctl restart sided
 journalctl -u sided -f
@@ -89,8 +109,10 @@ sided status 2>&1 | jq .SyncInfo.catching_up
 
 1. Add a **Bitcoin Segwit Address**
 ```sh
- sided keys add test --key-type="segwit"
-
+ sided keys add yournamewallet --key-type="segwit"
+```
+result must like this
+```
 - address: bc1q0xm60dd99hucpkux7rq6vr57g7k479nlw0xapt
   name: test
   pubkey: '{"@type":"/cosmos.crypto.segwit.PubKey","key":"A6gxg+M4sEu0MBFiYlj4r2fEaz/ueeaNE7ymf8Zx+Tqq"}'
@@ -114,8 +136,7 @@ sided tx staking create-validator \
 --commission-max-change-rate="0.05" \
 --min-self-delegation="10000000" \
 ```
-
-OR
+### Command
 Create Service
 ```
 sudo tee /etc/systemd/system/sided.service > /dev/null <<EOF
@@ -147,7 +168,7 @@ sided tx staking create-validator \
      --moniker="Your_moniker" \
      --identity=your_id_keybase  \
      --details="your_info" \
-     --chain-id="S2-testnet-1" \
+     --chain-id="S2-testnet-2" \
      --commission-rate="0.05" \
      --commission-max-rate="0.20" \
      --commission-max-change-rate="0.01" \
