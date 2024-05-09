@@ -145,7 +145,6 @@ Input data to validator.json file. Replace at "pubkey": {....} from show-validat
 	"website": "validator's (optional) website",
 	"security": "validator's (optional) security contact email",
 	"details": "validator's (optional) details",
-	"chain-id": "S2-testnet-2",
 	"commission-rate": "0.05",
 	"commission-max-rate": "0.2",
 	"commission-max-change-rate": "0.01",
