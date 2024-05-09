@@ -109,7 +109,7 @@ sided status 2>&1 | jq .SyncInfo.catching_up
 
 1. Add a **Bitcoin Segwit Address**
 ```sh
- sided keys add yournamewallet --key-type="segwit"
+ sided keys add side02 --key-type="segwit"
 ```
 result must like this
 ```
@@ -123,6 +123,38 @@ result must like this
 Please ensure that you use a Segwit address; otherwise, you will not be able to claim your rewards.
 
 2. Create Validator
+a. Create validator.json file (in case don't have token)
+```sh
+sided comet show-validator
+```
+The output will be something like this:
+```
+{"@type":"/cosmos.crypto.ed25519.PubKey","key":"ZXONS7NNjLWH4HePBOoHKDAYeLXQO5iUwpCRQSi1poI="}
+```
+Create validator file
+```
+nano $HOME/.side/config/validator.json
+```
+Input data to validator.json file. Replace at "pubkey": {....} from show-validator output
+```
+{
+	"pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"ZXONS7NNjLWH4HePBOoHKDAYeLXQO5iUwpCRQSi1poI="},
+	"amount": "10000000uside",
+	"moniker": "<validator-name>",
+	"identity": "optional identity signature (ex. UPort or Keybase)",
+	"website": "validator's (optional) website",
+	"security": "validator's (optional) security contact email",
+	"details": "validator's (optional) details",
+	"chain-id": "S2-testnet-2",
+	"commission-rate": "0.05",
+	"commission-max-rate": "0.2",
+	"commission-max-change-rate": "0.01",
+	"min-self-delegation": "10000000"
+}
+```
+Ctrl+o > Enter > Ctrl+x to save file & exit
+
+b. OR (incase have token)
 ```sh
 sided tx staking create-validator \
 --from="test" \
@@ -130,7 +162,7 @@ sided tx staking create-validator \
 --pubkey=$(sided tendermint show-validator)  \
 --moniker="side_node" \
 --security-contact="contact@side.one" \
---chain-id="S2-testnet-1" \
+--chain-id="S2-testnet-2" \
 --commission-rate="0.05" \
 --commission-max-rate="0.2" \
 --commission-max-change-rate="0.05" \
