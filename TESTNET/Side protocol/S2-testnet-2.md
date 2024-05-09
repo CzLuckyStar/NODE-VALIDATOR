@@ -224,7 +224,7 @@ sided tx staking edit-validator \
     --identity=new_identity \
     --details="new_info" \
     --website="your_website" \
-    --chain-id=S2-testnet-1 \
+    --chain-id=S2-testnet-2 \
     --from=wallet \
     --gas-prices=0.5uside \
     --gas-adjustment=1.5 \
@@ -233,11 +233,11 @@ sided tx staking edit-validator \
 ```
 Delegate to your validator
 ```
-sided tx staking delegate $(sided keys show wallet --bech val -a) 1000000uside --from wallet --chain-id side-testnet-3 --gas-prices 0.5uside --gas-adjustment 1.5 --gas auto -y
+sided tx staking delegate $(sided keys show wallet --bech val -a) 1000000uside --from wallet --chain-id S2-testnet-2 --gas-prices 0.5uside --gas-adjustment 1.5 --gas auto -y
 ```
 Unjail
 ```
-sided tx slashing unjail --from wallet--chain-id side-testnet-2 --gas auto --fees 1000uside -y
+sided tx slashing unjail --from wallet--chain-id S2-testnet-2 --gas-prices 0.5uside --gas-adjustment 1.5 --gas auto -y
 ```
 Delete node
 ```
@@ -245,7 +245,7 @@ sudo systemctl stop sided && sudo systemctl disable sided && sudo rm /etc/system
 ```
 Send Token
 ```
-sided tx bank send wallet <Receive_wallet> <Amout>uside --chain-id side-testnet-3 --gas-prices 0.5uside --gas-adjustment 1.5 --gas auto -y
+sided tx bank send wallet <Receive_wallet> <Amout>uside --chain-id S2-testnet-2 --gas-prices 0.5uside --gas-adjustment 1.5 --gas auto -y
 ```
                 
             
