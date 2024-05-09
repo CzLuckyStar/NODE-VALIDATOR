@@ -112,7 +112,7 @@ sided status 2>&1 | jq .SyncInfo.catching_up
  sided keys add side02 --key-type="segwit"
 ```
 result must like this
-```
+```sh
 - address: bc1q0xm60dd99hucpkux7rq6vr57g7k479nlw0xapt
   name: test
   pubkey: '{"@type":"/cosmos.crypto.segwit.PubKey","key":"A6gxg+M4sEu0MBFiYlj4r2fEaz/ueeaNE7ymf8Zx+Tqq"}'
@@ -122,21 +122,21 @@ result must like this
 **Note:**
 Please ensure that you use a Segwit address; otherwise, you will not be able to claim your rewards.
 
-2. Create Validator
-a. Create validator.json file (in case don't have token)
+2.a Create Validator
+   Create validator.json file (in case don't have token)
 ```sh
 sided comet show-validator
 ```
 The output will be something like this:
-```
+```sh
 {"@type":"/cosmos.crypto.ed25519.PubKey","key":"ZXONS7NNjLWH4HePBOoHKDAYeLXQO5iUwpCRQSi1poI="}
 ```
 Create validator file
-```
+```sh
 nano $HOME/.side/config/validator.json
 ```
 Input data to validator.json file. Replace at "pubkey": {....} from show-validator output
-```
+```sh
 {
 	"pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"ZXONS7NNjLWH4HePBOoHKDAYeLXQO5iUwpCRQSi1poI="},
 	"amount": "10000000uside",
@@ -153,19 +153,26 @@ Input data to validator.json file. Replace at "pubkey": {....} from show-validat
 ```
 Ctrl+o > Enter > Ctrl+x to save file & exit
 
-b. OR (incase have token)
+2.b OR (incase have token)
+
+ Create new Validator: Change your custom information at: Your_moniker, your_id_keybase, your_info. What items don't need to be able to be deleted
 ```sh
 sided tx staking create-validator \
---from="test" \
---amount="10000000uside" \
---pubkey=$(sided tendermint show-validator)  \
---moniker="side_node" \
---security-contact="contact@side.one" \
+--from="your_wallet_address" \
+--amount="100000uside" \
+--pubkey=$(sided tendermint show-validator) \
+--moniker="Your_moniker" \
+--identity=your_id_keybase \
+--details="your_info" \
 --chain-id="S2-testnet-2" \
 --commission-rate="0.05" \
 --commission-max-rate="0.2" \
 --commission-max-change-rate="0.05" \
---min-self-delegation="10000000" \
+--min-self-delegation="100000" \
+--gas auto \
+--gas-adjustment 1.5 \
+--gas-prices=0.5uside \
+-y
 ```
 ### Command
 Create Service
@@ -189,23 +196,26 @@ sudo systemctl enable sided
 
 Query Wallet Balance
 ```
-sided q bank balances $(sided keys show wallet -a)
+sided q bank balances <your_wallet_address>
 ```
  Create new Validator: Change your custom information at: Your_moniker, your_id_keybase, your_info. What items don't need to be able to be deleted
 ```
 sided tx staking create-validator \
-     --amount=1000000uside \
-     --pubkey=$(sided tendermint show-validator) \
-     --moniker="Your_moniker" \
-     --identity=your_id_keybase  \
-     --details="your_info" \
-     --chain-id="S2-testnet-2" \
-     --commission-rate="0.05" \
-     --commission-max-rate="0.20" \
-     --commission-max-change-rate="0.01" \
-     --min-self-delegation="1" \
-     --fees="200uside" \
-     --from=wallet
+--from="your_wallet_address" \
+--amount="100000uside" \
+--pubkey=$(sided tendermint show-validator) \
+--moniker="Your_moniker" \
+--identity=your_id_keybase \
+--details="your_info" \
+--chain-id="S2-testnet-2" \
+--commission-rate="0.05" \
+--commission-max-rate="0.2" \
+--commission-max-change-rate="0.05" \
+--min-self-delegation="100000" \
+--gas auto \
+--gas-adjustment 1.5 \
+--gas-prices=0.5uside \
+-y
 ```
  Edit Existing Validator:  Change your custom information.
 ```
