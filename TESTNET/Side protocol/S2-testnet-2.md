@@ -231,9 +231,22 @@ sided tx staking edit-validator \
     --gas=auto \
     -y
 ```
+Check validator info
+```
+sided status 2>&1 | jq .ValidatorInfo
+```
+or
+```
+sided status info
+```
+
 Delegate to your validator
 ```
 sided tx staking delegate $(sided keys show wallet --bech val -a) 1000000uside --from wallet --chain-id S2-testnet-2 --gas-prices 0.5uside --gas-adjustment 1.5 --gas auto -y
+```
+Delegate to another validator
+```
+sided tx staking delegate <TO_VALOPER_ADDRESS> 1000000uside  --from <YOUR_ADDRESS> --chain-id S2-testnet-2 --gas-prices 0.5uside --gas-adjustment 1.5 --gas auto -y
 ```
 Unjail
 ```
