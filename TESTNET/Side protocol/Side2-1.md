@@ -2,39 +2,45 @@
 # Side-Protocol (Testnet2-2)
 
 Update system
-
-    sudo apt update
-    sudo apt-get install git curl build-essential make jq gcc snapd chrony lz4 tmux unzip bc -y
-
+```
+sudo apt update
+sudo apt-get install git curl build-essential make jq gcc snapd chrony lz4 tmux unzip bc -y
+```
 Install Go
-
-    rm -rf $HOME/go
-    sudo rm -rf /usr/local/go
-    cd $HOME
-    curl https://dl.google.com/go/go1.22.1.linux-amd64.tar.gz | sudo tar -C/usr/local -zxvf -
-    cat <<'EOF' >>$HOME/.profile
-    export GOROOT=/usr/local/go
-    export GOPATH=$HOME/go
-    export GO111MODULE=on
-    export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
-    EOF
-    source $HOME/.profile
-    go version
-
+```
+rm -rf $HOME/go
+sudo rm -rf /usr/local/go
+cd $HOME
+curl https://dl.google.com/go/go1.22.1.linux-amd64.tar.gz | sudo tar -C/usr/local -zxvf -
+cat <<'EOF' >>$HOME/.profile
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export GO111MODULE=on
+export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
+EOF
+source $HOME/.profile
+go version
+```
 Install Node
-
-    cd $HOME
-    rm -rf sidechain
-    git clone https://github.com/sideprotocol/side.git
-    cd side
-    git checkout v0.8.1
-    make install
-    sided version
-
+```
+cd $HOME
+rm -rf sidechain && rm -rf side
+git clone https://github.com/sideprotocol/side.git
+```
+```    
+cd side
+git checkout v0.8.1
+```
+```    
+make install
+ ```
+```   
+sided version
+```
 Initialize Node: Replace NodeName with your own moniker.
-
-    sided init NodeName --chain-id=S2-testnet-2
-
+```
+sided init NodeName --chain-id=S2-testnet-2
+```
 Here's your tutorial with the commands formatted for clarity:
 
 1. Download the genesis file:
