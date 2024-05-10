@@ -41,11 +41,6 @@ Initialize Node: Replace NodeName with your own moniker.
 ```
 sided init NodeName
 ```
-OR:
-```
-sided init NodeName --chain-id=S2-testnet-2
-```
-Here's your tutorial with the commands formatted for clarity:
 
 1. Download the genesis file:
 ```sh
@@ -85,22 +80,13 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.5uside\"/" $HOME/
 5. Start your node:
 ```sh
 sided version
-commit: 22e123457317f8edc949739c7310ea991b7a8100
-cosmos_sdk_version: v0.47.9
-go: go version go1.22.0 linux/amd64
-name: sidechain
-server_name: sided
-version: 0.8.1
 ```
+version: 0.8.1
+
 ```sh
 sided start
 ```
 
-OR:
-```sh
-sudo systemctl restart sided
-journalctl -u sided -f
-```
 Check syn: False
 ```sh
 sided status 2>&1 | jq .SyncInfo.catching_up
@@ -109,7 +95,7 @@ sided status 2>&1 | jq .SyncInfo.catching_up
 
 1. Add a **Bitcoin Segwit Address**
 ```sh
- sided keys add side02 --key-type="segwit"
+ sided keys add <yournewwallet> --key-type="segwit"
 ```
 result must like this
 ```sh
@@ -122,8 +108,8 @@ result must like this
 **Note:**
 Please ensure that you use a Segwit address; otherwise, you will not be able to claim your rewards.
 
-2.a Create Validator
-   Create validator.json file (in case don't have token)
+2.a Create Validator file:
+   validator.json file 
 ```sh
 sided comet show-validator
 ```
@@ -148,12 +134,18 @@ Input data to validator.json file. Replace at "pubkey": {....} from show-validat
 	"commission-rate": "0.05",
 	"commission-max-rate": "0.2",
 	"commission-max-change-rate": "0.01",
-	"min-self-delegation": "10000000"
+	"min-self-delegation": "100000"
 }
 ```
 Ctrl+o > Enter > Ctrl+x to save file & exit
 
-2.b OR (incase have token)
+
+Query Wallet Balance
+```
+sided q bank balances <your_wallet_address>
+```
+
+2.b Create validator
 
  Create new Validator: Change your custom information at: Your_moniker, your_id_keybase, your_info. What items don't need to be able to be deleted
 ```sh
@@ -174,50 +166,8 @@ sided tx staking create-validator \
 --gas-prices=0.5uside \
 -y
 ```
-### Command
-Create Service
-```
-sudo tee /etc/systemd/system/sided.service > /dev/null <<EOF
-[Unit]
-Description=sided Daemon
-After=network-online.target
-[Service]
-User=$USER
-ExecStart=$(which sided) start
-Restart=always
-RestartSec=3
-LimitNOFILE=65535
-[Install]
-WantedBy=multi-user.target
-EOF
-sudo systemctl daemon-reload
-sudo systemctl enable sided
-```
 
-Query Wallet Balance
-```
-sided q bank balances <your_wallet_address>
-```
- Create new Validator: Change your custom information at: Your_moniker, your_id_keybase, your_info. What items don't need to be able to be deleted
-```
-sided tx staking create-validator \
---from="your_wallet_address" \
---amount="100000uside" \
---pubkey=$(sided tendermint show-validator) \
---moniker="Your_moniker" \
---identity=your_id_keybase \
---details="your_info" \
---chain-id="S2-testnet-2" \
---commission-rate="0.05" \
---commission-max-rate="0.2" \
---commission-max-change-rate="0.05" \
---min-self-delegation="100000" \
---gas auto \
---gas-adjustment 1.5 \
---gas-prices=0.5uside \
--y
-```
- Edit Existing Validator:  Change your custom information.
+Edit Existing Validator:  Change your custom information.
 ```
 sided tx staking edit-validator \
     --new-moniker="New_moniker" \
@@ -233,11 +183,11 @@ sided tx staking edit-validator \
 ```
 Check validator info
 ```
-sided status 2>&1 | jq .ValidatorInfo
+sided status info
 ```
 or
 ```
-sided status info
+sided status 2>&1 | jq .ValidatorInfo
 ```
 
 Delegate to your validator
