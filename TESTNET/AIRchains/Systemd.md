@@ -77,7 +77,23 @@ sed -i -e 's|^indexer *=.*|indexer = "null"|' $HOME/.junction/config/config.toml
 sed -i 's|^prometheus *=.*|prometheus = true|' $HOME/.junction/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.00025amf\"/" $HOME/.junction/config/app.toml
 ```
-
+### Create service
+```
+sudo tee /etc/systemd/system/junctiond.service > /dev/null << EOF
+[Unit]
+Description=Airchain Node
+After=network-online.target
+StartLimitIntervalSec=0
+[Service]
+User=$USER
+Restart=always
+RestartSec=3
+LimitNOFILE=65535
+ExecStart=/usr/local/bin/junctiond start
+[Install]
+WantedBy=multi-user.target
+EOF
+```
 ### Start Node
 ```
 junctiond start
