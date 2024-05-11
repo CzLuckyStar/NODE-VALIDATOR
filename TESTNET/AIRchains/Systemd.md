@@ -94,6 +94,17 @@ ExecStart=/usr/local/bin/junctiond start
 WantedBy=multi-user.target
 EOF
 ```
+
+### System reload
+``` 
+sudo systemctl daemon-reload 
+```
+
+### Start service
+```
+sudo service junctiond start
+```
+
 ### Start Node
 ```
 junctiond start
