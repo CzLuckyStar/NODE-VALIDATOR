@@ -3,8 +3,8 @@
 
 Run the node using systemd
 
-## Chain ID: `seda`
-
+## Chain ID (test): `seda-1-dryrun | seda-1-testnet`
+## Chain ID (main): `seda-1`
 ## Recommended Hardware Requirements
 
 |   SPEC      |       Minimum             |
@@ -44,6 +44,10 @@ wget -O sedad https://github.com/sedaprotocol/seda-chain/releases/download/v0.1.
 chmod +x sedad
 sudo mv sedad /usr/local/bin
 ```
+
+
+### OR:
+
 
 ### Initialize the Node with the Moniker
 Replace <moniker> with your own moniker
@@ -184,7 +188,7 @@ sedad q bank balances <yourwallet>
 
 Create VALIDATOR:
 ```
-sedad tx staking create-validator $HOME/.sedad/config/validator.json --from wallet --chain-id test-chain-PIfKS9 --gas-prices 0.005aseda --gas-adjustment 1.5 --gas auto -y
+sedad tx staking create-validator $HOME/.sedad/config/validator.json --from wallet --chain-id seda-1-dryrun --gas-prices 0.005aseda --gas-adjustment 1.5 --gas auto -y
 ```
 ### COMMAND
 Check validator status:
@@ -196,5 +200,5 @@ sedad status info
 ```
 Delegate to Yourself
 ```
-sedad tx staking delegate $(sedad keys show wallet --bech val -a) 0.1amf  --from wallet --chain-id test-chain-PIfKS9 --gas-prices=0.005aseda  --gas-adjustment 1.5 --gas "auto" -y 
+sedad tx staking delegate $(sedad keys show wallet --bech val -a) 0.1amf  --from wallet --chain-id seda-1-testnet --gas-prices=0.005aseda  --gas-adjustment 1.5 --gas "auto" -y 
 ```
