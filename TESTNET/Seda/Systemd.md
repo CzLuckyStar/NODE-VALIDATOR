@@ -55,41 +55,40 @@ sedad init <moniker>
 dev
 ```
 wget https://github.com/sedaprotocol/seda-networks/blob/main/devnet/genesis.json
-cp genesis.json $HOME/.seda/config/genesis.json
+cp genesis.json $HOME/.sedad/config/genesis.json
 ```
 testnet
 ```
 wget https://github.com/sedaprotocol/seda-networks/blob/main/testnet/genesis.json
-cp genesis.json $HOME/.seda/config/genesis.json
+cp genesis.json $HOME/.sedad/config/genesis.json
 ```
 
 ### Configure
 dev
 ```
-5f9f30d597f6a8f9a1e42385143a771e3a8a4e1b@35.177.180.184:26656,306d36164a13eee3fa3b1f673a106d05f9c774e8@18.130.31.180:26656
 SEEDS="5f9f30d597f6a8f9a1e42385143a771e3a8a4e1b@35.177.180.184:26656,306d36164a13eee3fa3b1f673a106d05f9c774e8@18.130.31.180:26656"
 PEERS="5f9f30d597f6a8f9a1e42385143a771e3a8a4e1b@35.177.180.184:26656,306d36164a13eee3fa3b1f673a106d05f9c774e8@18.130.31.180:26656"
-sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.seda/config/config.toml
+sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.sedad/config/config.toml
 ```
 testnet
 ```
 SEEDS="cb75c263cff51a14a4f10694046bb81414d10064@18.171.36.35:26656,9b6de59e38faa31ac0f2ae2469954be562fc167f@13.41.125.154:26656"
 PEERS="cb75c263cff51a14a4f10694046bb81414d10064@18.171.36.35:26656,9b6de59e38faa31ac0f2ae2469954be562fc167f@13.41.125.154:26656"
-sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.seda/config/config.toml
+sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.sedad/config/config.toml
 ```
 ### Set Pruning, Enable Prometheus, Gas Price, and Indexer
 ```
 PRUNING="custom"
 PRUNING_KEEP_RECENT="100"
 PRUNING_INTERVAL="19"
-sed -i -e "s/^pruning *=.*/pruning = \"$PRUNING\"/" $HOME/.seda/config/app.toml
+sed -i -e "s/^pruning *=.*/pruning = \"$PRUNING\"/" $HOME/.sedad/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \
-\"$PRUNING_KEEP_RECENT\"/" $HOME/.seda/config/app.toml
+\"$PRUNING_KEEP_RECENT\"/" $HOME/.sedad/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
-\"$PRUNING_INTERVAL\"/" $HOME/.seda/config/app.toml
-sed -i -e 's|^indexer *=.*|indexer = "null"|' $HOME/.seda/config/config.toml
-sed -i 's|^prometheus *=.*|prometheus = true|' $HOME/.seda/config/config.toml
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.005useda\"/" $HOME/.seda/config/app.toml
+\"$PRUNING_INTERVAL\"/" $HOME/.sedad/config/app.toml
+sed -i -e 's|^indexer *=.*|indexer = "null"|' $HOME/.sedad/config/config.toml
+sed -i 's|^prometheus *=.*|prometheus = true|' $HOME/.sedad/config/config.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.005aseda\"/" $HOME/.sedad/config/app.toml
 ```
 ### Create service
 ```
@@ -164,7 +163,7 @@ Input data to validator.json file. Replace at "pubkey": {....} from show-validat
 ```
 {
 	"pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"ZXONS7NNjLWH4HePBOoHKDAYeLXQO5iUwpCRQSi1poI="},
-	"amount": "1000000amf",
+	"amount": "1000000aseda",
 	"moniker": "<validator-name>",
 	"identity": "optional identity signature (ex. UPort or Keybase)",
 	"website": "validator's (optional) website",
@@ -185,7 +184,7 @@ sedad q bank balances <yourwallet>
 
 Create VALIDATOR:
 ```
-sedad tx staking create-validator $HOME/.seda/config/validator.json --from wallet --chain-id seda --gas-prices 0.00025amf --gas-adjustment 1.5 --gas auto -y
+sedad tx staking create-validator $HOME/.sedad/config/validator.json --from wallet --chain-id seda --gas-prices 0.005aseda --gas-adjustment 1.5 --gas auto -y
 ```
 ### COMMAND
 Check validator status:
@@ -197,5 +196,5 @@ sedad status info
 ```
 Delegate to Yourself
 ```
-sedad tx staking delegate $(sedad keys show wallet --bech val -a) 0.1amf  --from wallet --chain-id seda --gas-prices=0.00025amf  --gas-adjustment 1.5 --gas "auto" -y 
+sedad tx staking delegate $(sedad keys show wallet --bech val -a) 0.1amf  --from wallet --chain-id seda --gas-prices=0.005aseda  --gas-adjustment 1.5 --gas "auto" -y 
 ```
