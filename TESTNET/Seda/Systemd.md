@@ -184,7 +184,7 @@ sedad q bank balances <yourwallet>
 
 Create VALIDATOR:
 ```
-sedad tx staking create-validator $HOME/.sedad/config/validator.json --from wallet --chain-id seda --gas-prices 0.005aseda --gas-adjustment 1.5 --gas auto -y
+sedad tx staking create-validator $HOME/.sedad/config/validator.json --from wallet --chain-id test-chain-PIfKS9 --gas-prices 0.005aseda --gas-adjustment 1.5 --gas auto -y
 ```
 ### COMMAND
 Check validator status:
@@ -196,5 +196,5 @@ sedad status info
 ```
 Delegate to Yourself
 ```
-sedad tx staking delegate $(sedad keys show wallet --bech val -a) 0.1amf  --from wallet --chain-id seda --gas-prices=0.005aseda  --gas-adjustment 1.5 --gas "auto" -y 
+sedad tx staking delegate $(sedad keys show wallet --bech val -a) 0.1amf  --from wallet --chain-id test-chain-PIfKS9 --gas-prices=0.005aseda  --gas-adjustment 1.5 --gas "auto" -y 
 ```
