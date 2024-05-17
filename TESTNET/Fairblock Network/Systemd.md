@@ -30,7 +30,7 @@ source $HOME/.profile
 Or:
 ```
 sudo rm -rf /usr/local/go
-curl -Ls https://go.dev/dl/go1.22.1.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
+curl -Ls https://go.dev/dl/go1.21.1.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
 eval $(echo 'export PATH=$PATH:/usr/local/go/bin' | sudo tee /etc/profile.d/golang.sh)
 eval $(echo 'export PATH=$PATH:$HOME/go/bin' | tee -a $HOME/.profile)
 ```
@@ -88,7 +88,7 @@ go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@lastest
 ```
 Or:
 ```
-go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
 ```
 # Create service
 ```
