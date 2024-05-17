@@ -45,10 +45,9 @@ Replace YOUR_MONIKER_GOES_HERE with your validator name
 ```
 MONIKER="YOUR_MONIKER_GOES_HERE"
 ```
-Install dependencies
-```
+# Install dependencies
 Update system and install build tools
-```
+
 
 Install Go
 
