@@ -75,15 +75,16 @@ The output should show 0.5.0
 
 # Prepare binaries for Cosmovisor
 ```
-mkdir -p .fairyring/cosmovisor/genesis/bin
-mv ~/go/bin/fairyringd .fairyring/cosmovisor/genesis/bin/
+mkdir -p $HOME/.fairyring/cosmovisor/genesis/bin
+mv $HOME/go/bin/fairyringd $HOME/.fairyring/cosmovisor/genesis/bin/
 rm -rf build
+sudo ln -s $HOME/.fairyring/cosmovisor/genesis/bin/fairyringd /usr/local/bin/fairyringd -f
 ```
 Install Cosmovisor and create a service
 
 # Download and install Cosmovisor
 ```
-go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@lastest
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
 ```
 Or:
 ```
