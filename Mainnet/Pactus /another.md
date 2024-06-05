@@ -107,9 +107,8 @@ Find [http]
 [http]
   enable = true
   listen = "127.0.0.1:8085"
-Strat node: (Run in tmux)
 ```
-
+Start node: (Run in tmux)
 
 ```
 sudo ./pactus-daemon start
