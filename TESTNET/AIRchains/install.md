@@ -44,7 +44,7 @@ junctiond version --long | grep -e commit -e version
 ```
 junctiond config chain-id junction
 junctiond config keyring-backend file
-junctiond config node tcp://localhost:13757
+junctiond config node tcp://localhost:16657
 ```
 ### Initialize node:
 ```
