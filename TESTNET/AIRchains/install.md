@@ -1,8 +1,10 @@
 # AIRCHAINS
 
-RPC: https://airchains-test.rpc.moonbridge.team
-Chain ID: junction | Latest Version: v0.1.0 | Custom Port: 137
-Specify the name of your “MONIKER” (validator) which will be visible in the explorer
+RPC: `https://airchains-test.rpc.moonbridge.team`
+
+Chain ID: `junction` | Latest Version: `v0.1.0` | Custom Port: `137`
+
+Specify the name of your `“MONIKER”` (validator) which will be visible in the explorer
 ```
 MONIKER="YOUR_MONIKER_NAME"
 ```
