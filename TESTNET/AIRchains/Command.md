@@ -1,3 +1,7 @@
+### CHECK SYNC info
+```
+junctiond status 2>&1 | jq .sync_info
+```
 ### CHECK SYNC
 ```
 junctiond status 2>&1 | jq .SyncInfo.catching_up
