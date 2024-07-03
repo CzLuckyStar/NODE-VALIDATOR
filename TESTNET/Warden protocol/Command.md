@@ -202,9 +202,9 @@ wardend tendermint unsafe-reset-all --keep-addr-book --home $HOME/.warden --keep
 **Please, before proceeding with the next step! All chain data will be lost! Make sure you have backed up your priv_validator_key.json!**
 ```
 cd $HOME
-sudo systemctl stop warden-testnet.service
-sudo systemctl disable warden-testnet.service
-sudo rm /etc/systemd/system/warden-testnet.service
+sudo systemctl stop wardend.service
+sudo systemctl disable wardend.service
+sudo rm /etc/systemd/system/wardend.service
 sudo systemctl daemon-reload
 rm -f $(which wardend)
 rm -rf $HOME/.warden
@@ -217,29 +217,29 @@ sudo systemctl daemon-reload
 ```
 ### ENABLE SERVICE
 ```
-sudo systemctl enable warden-testnet.service
+sudo systemctl enable wardend.service
 ```
 ### DISABLE SERVICE
 ```
-sudo systemctl disable warden-testnet.service
+sudo systemctl disable wardend.service
 ```
 ### START SERVICE
 ```
-sudo systemctl start warden-testnet.service
+sudo systemctl start wardend.service
 ```
 ### STOP SERVICE
 ```
-sudo systemctl stop warden-testnet.service
+sudo systemctl stop wardend.service
 ```
 ### RESTART SERVICE
 ```
-sudo systemctl restart warden-testnet.service
+sudo systemctl restart wardend.service
 ```
 ### CHECK SERVICE STATUS
 ```
-sudo systemctl status warden-testnet.service
+sudo systemctl status wardend.service
 ```
 ### CHECK SERVICE LOGS
 ```
-sudo journalctl -u warden-testnet.service -f --no-hostname -o cat
+sudo journalctl -u wardend.service -f --no-hostname -o cat
 ```
