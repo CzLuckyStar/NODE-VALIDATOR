@@ -122,6 +122,26 @@ WantedBy=multi-user.target
 EOF
 ```
 
+OR:
+
+```
+sudo tee /etc/systemd/system/wardend.service > /dev/null << EOF
+[Unit]
+Description=Warden Node
+After=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+User=root
+Restart=always
+RestartSec=3
+LimitNOFILE=65535
+ExecStart=/usr/local/bin/wardend start
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable wardend.service
