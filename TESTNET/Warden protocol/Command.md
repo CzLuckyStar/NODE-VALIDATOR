@@ -168,11 +168,11 @@ sed -i \
 # 🚨 Maintenance
 ### GET VALIDATOR INFO
 ```
-wardend status 2>&1 | jq .ValidatorInfo
+wardend status 2>&1 | jq .validator_info
 ```
 ### GET SYNC INFO
 ```
-wardend status 2>&1 | jq .SyncInfo
+wardend status 2>&1 | jq .sync_info
 ```
 ### GET NODE PEER
 ```
