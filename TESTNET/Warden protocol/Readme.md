@@ -66,6 +66,67 @@ Disable indexer:
 sed -i -e 's|^indexer *=.*|indexer = "null"|' $HOME/.warden/config/config.toml
 ```
 
+
+### Download and install Cosmovisor
+```
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
+```
+
+### Download genesis and addrbook
+```
+curl -Ls https://snapshots.kjnodes.com/warden-testnet/genesis.json > $HOME/.warden/config/genesis.json
+curl -Ls https://snapshots.kjnodes.com/warden-testnet/addrbook.json > $HOME/.warden/config/addrbook.json
+```
+
+### Set pruning
+```
+sed -i \
+  -e 's|^pruning *=.*|pruning = "custom"|' \
+  -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
+  -e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
+  -e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
+  $HOME/.warden/config/app.toml
+```
+### Set custom ports (OPTION)
+```
+sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:17858\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:17857\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:17860\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:17856\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":17866\"%" $HOME/.warden/config/config.toml
+sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:17817\"%; s%^address = \":8080\"%address = \":17880\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:17890\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:17891\"%; s%:8545%:17845%; s%:8546%:17846%; s%:6065%:17865%" $HOME/.warden/config/app.toml
+```
+
+## Download latest chain snapshot:
+```
+curl -L https://snapshots.kjnodes.com/warden-testnet/snapshot_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.warden
+[[ -f $HOME/.warden/data/upgrade-info.json ]] && cp $HOME/.warden/data/upgrade-info.json $HOME/.warden/cosmovisor/genesis/upgrade-info.json
+```
+
+### Create service
+```
+sudo tee /etc/systemd/system/wardend.service > /dev/null << EOF
+[Unit]
+Description=warden node service
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65535
+Environment="DAEMON_HOME=$HOME/.warden"
+Environment="DAEMON_NAME=wardend"
+Environment="UNSAFE_SKIP_BACKUP=true"
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.warden/cosmovisor/current/bin"
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+```
+sudo systemctl daemon-reload
+sudo systemctl enable wardend.service
+```
+
 e. Star Warden:
 
     wardend start
