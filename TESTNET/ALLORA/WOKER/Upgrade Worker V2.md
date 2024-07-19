@@ -196,7 +196,8 @@ To save: CTRL+X+Y Enter
 
 ## Run worker
 ```console
-docker compose up -d --build
+docker compose build
+docker compose up -d
 ```
 
 ## Check your node status
