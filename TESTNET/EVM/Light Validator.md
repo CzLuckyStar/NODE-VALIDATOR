@@ -38,7 +38,9 @@ MacOS
 ![image](https://github.com/user-attachments/assets/cc7e9baa-c9ea-44a9-8292-40995598c0f7)
 
 
-## Run a light validator
+## A. INSTALL
+
+### Run a light validator
 
 Light validator is a type of node that performs availability validation solely through data sampling without participating in data sharding synchronization. It is also part of a consensus network. These nodes can participate in voting but will not act as proposers to generate new blocks. You can follow the steps below to start a light validator:
 
@@ -203,3 +205,61 @@ ubuntu      1981       1 86 08:09 pts/0    00:00:43 /home/ubuntu/dill/dill-node 
 - Send deposit，using MetaMask to send a deposit transaction
 
   ![image](https://github.com/user-attachments/assets/fc5b37db-d667-4b12-a227-e685747c3c19)
+
+
+## B. MANAGEMENT:
+
+### 1. Services Management
+```
+cd $HOME/dill
+```
+
+1.1 Check health node
+```
+./health_check.sh -v
+```
+
+1.2 Stop node
+
+```
+ps -ef | grep dill-node | grep -v grep | awk '{print $2}' | xargs kill
+```
+
+1.3 Start node
+
+```
+./start_light.sh -p walletPw.txt
+```
+
+1.4 Check logs
+
+```
+tail -f -n 100 $HOME/dill/light_node/logs/dill.log
+```
+
+1.5 Check on Explorer
+
+Copy your pubkey in file deposit_data-xxxx.json and search it on explorer: https://andes.dill.xyz/validators?p=1&ps=1000
+
+
+### 2. Fix port 8080 (change to 8081)
+
+2.1 Stop node
+```
+cd $HOME/dill
+```
+
+```
+ps -ef | grep dill-node | grep -v grep | awk '{print $2}' | xargs kill
+```
+2.2 Update file (use port 8081)
+```
+rm -rf $HOME/dill/health_check.sh && rm -rf $HOME/dill/start_light.sh && \
+wget -O  $HOME/dill/start_light.sh https://raw.githubusercontent.com/nodesynctop/Dill/main/start_light.sh && \
+wget -O  $HOME/dill/health_check.sh https://raw.githubusercontent.com/nodesynctop/Dill/main/health_check.sh && \
+chmod +x health_check.sh && chmod +x start_light.sh
+```
+2.3 Start node 
+```
+./start_light.sh -p walletPw.txt
+```
