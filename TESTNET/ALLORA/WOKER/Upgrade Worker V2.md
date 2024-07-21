@@ -1,30 +1,71 @@
 ### Make sure you have uALLO faucet in your wallet in order to register 2nd worker
 
-#
+# UPGRADE WORKER v2 from v1.
 
 ### Steps:
 
 ```console
 cd $HOME && cd basic-coin-prediction-node
+```
 
+```
 docker compose down
 docker container stop worker-basic-eth-pred
 docker container rm worker-basic-eth-pred
+```
 
+## `Remove all container & images`
+
+## UPGRADE ALLORAD:
+
+```
+cd $HOME 
+rm -rf allora-chain 
+git clone https://github.com/allora-network/allora-chain.git
+cd allora-chain && make all
+allorad version
+```
+
+
+
+
+## INSTALL WORKER:
+
+```console
+cd $HOME && cd basic-coin-prediction-node
+```
+
+```
 mkdir workers
 mkdir workers/worker-1 workers/worker-2
+```
 
+```
 sudo chmod -R 777 workers/worker-1
 sudo chmod -R 777 workers/worker-2
+```
 
+
+```
 sudo docker run -it --entrypoint=bash -v ./workers/worker-1:/data alloranetwork/allora-inference-base:latest -c "mkdir -p /data/keys && (cd /data/keys && allora-keys)"
 sudo docker run -it --entrypoint=bash -v ./workers/worker-2:/data alloranetwork/allora-inference-base:latest -c "mkdir -p /data/keys && (cd /data/keys && allora-keys)"
+```
 
+
+### Create Head-ID Keys:
+
+```
+sudo docker run -it --entrypoint=bash -v ./head-data:/data alloranetwork/allora-inference-base:latest -c "mkdir -p /data/keys && (cd /data/keys && allora-keys)"
+```
+
+
+```
 rm -rf docker-compose.yml && nano docker-compose.yml
 ```
 
 * Copy & Paste the following code in it
-* Replace `head-id` & `WALLET_SEED_PHRASE` in worker-1 and worker-2 containers
+*** Replace `head-id` & `WALLET_SEED_PHRASE` in worker-1 and worker-2 containers**
+
 ```
 version: '3'
 
