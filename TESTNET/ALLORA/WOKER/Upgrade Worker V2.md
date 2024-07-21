@@ -1,5 +1,7 @@
 ### Make sure you have uALLO faucet on `testnet-1` in your wallet in order to register 2nd worker
 
+Get uAllo faucet [here](https://faucet.testnet-1.testnet.allora.network/)
+
 # UPGRADE WORKER v2 from v1.
 
 ### Steps:
