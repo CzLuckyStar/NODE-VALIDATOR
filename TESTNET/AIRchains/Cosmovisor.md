@@ -114,6 +114,31 @@ WantedBy=multi-user.target
 EOF
 ```
 
+OR:
+
+```
+sudo tee /etc/systemd/system/junctiond.service > /dev/null << EOF
+[Unit]
+Description=Airchains Node
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65535
+Environment="DAEMON_NAME=junctiond"
+Environment="DAEMON_HOME=$HOME/.junction"
+Environment="UNSAFE_SKIP_BACKUP=true"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable junctiond
