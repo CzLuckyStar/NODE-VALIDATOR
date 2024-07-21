@@ -1,4 +1,4 @@
-### Make sure you have uALLO faucet in your wallet in order to register 2nd worker
+### Make sure you have uALLO faucet on `testnet-1` in your wallet in order to register 2nd worker
 
 # UPGRADE WORKER v2 from v1.
 
@@ -490,4 +490,18 @@ Response:
 ### Check Docker containers
 ```console
 docker ps
+```
+
+
+### 🚨Error 408: when checking topic status
+```console
+# Ensure you are in the right directory
+cd $HOME && cd basic-coin-prediction-node
+
+# Remove worker container (worker-1 or worker-2)
+docker container stop worker-1
+docker container rm worker-1
+
+# Restart worker container (worker-1 or worker-2)
+docker compose up -d --build
 ```
