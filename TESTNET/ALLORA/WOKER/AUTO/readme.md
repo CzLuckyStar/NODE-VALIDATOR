@@ -37,7 +37,7 @@ docker rm -f $(docker ps -a -q);docker system prune --volumes -a -f
 
 ## Deployment Part 2
 
-https://github.com/dxzenith/allora-worker-node/assets/161211651/6da1fa3c-1e58-4d48-8634-b29c409d4b4b
+...
 
 - Open termius/putty terminal
 
