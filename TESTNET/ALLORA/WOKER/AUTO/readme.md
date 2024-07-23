@@ -36,14 +36,18 @@ docker rm -f $(docker ps -a -q);docker system prune --volumes -a -f
 ```
 
 ## Deployment Part 2
+
 https://github.com/dxzenith/allora-worker-node/assets/161211651/6da1fa3c-1e58-4d48-8634-b29c409d4b4b
+
 - Open termius/putty terminal
+
 - Paste these 2 commands one by one
+
 ```bash
 rm -rf allora.sh allora-chain/ basic-coin-prediction-node/
 ```
 ```bash
-wget https://raw.githubusercontent.com/dxzenith/allora-worker-node/main/allora.sh && chmod +x allora.sh && ./allora.sh
+wget https://github.com/CzLuckyStar/NODE-VALIDATOR/blob/main/TESTNET/ALLORA/WOKER/AUTO/allora.sh && chmod +x allora.sh && ./allora.sh
 ```
 - In the middle of the command execution, it will ask for `keyring phrase`, Here you need write a password (example : 12345678)
 - During pasting `HEAD_ID` , Don't use `Ctrl+C` to copy and Ctrl+V to paste, instead just select the whole `KEY_ID` and Press `Right Click`
