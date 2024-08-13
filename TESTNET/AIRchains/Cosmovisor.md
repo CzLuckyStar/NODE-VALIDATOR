@@ -27,9 +27,13 @@ source $HOME/.bash_profile
 
 ### Install Cosmovisor:
 ```
-go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
 ```
 
+OR: 
+```
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
+```
 ### Download and install:
 ```
 cd $HOME
