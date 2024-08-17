@@ -41,7 +41,7 @@ sudo systemctl restart wardend.service && sudo journalctl -u wardend.service -f 
 
 ## Create slinky systemd service
 ```
-sudo tee /etc/systemd/system/slinkyd.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/warden-slinky.service > /dev/null <<EOF
 [Unit]
 Description=Slinky service
 After=network-online.target
@@ -58,9 +58,27 @@ WantedBy=multi-user.target
 EOF
 ```
 
-## Start slinky service
+## Start slinky (oracle) service
 ```
 sudo systemctl daemon-reload
-sudo systemctl enable slinkyd
-sudo systemctl restart slinkyd.service && sudo journalctl -u slinkyd.service -f --no-hostname -o cat
+sudo systemctl enable warden-slinky
+sudo systemctl restart warden-slinky.service && sudo journalctl -u warden-slinky.service -f --no-hostname -o cat
+```
+
+## CHECK LOG & STATUS:
+
+To check service logs use command below:
+
+```
+journalctl -fu warden-slinky -o cat
+```
+
+
+```
+sudo systemctl status warden-slinky
+```
+
+Check price:
+```
+curl localhost:$SLINKY_PORT/slinky/oracle/v1/prices | jq
 ```
