@@ -42,7 +42,7 @@ nano validator.json
 ### Then create your validator by passing the created text file:
 ```
 kopid tx staking create-validator validator.json \
-  --from key \
+  --from wallet \
   --keyring-backend file \
   --chain-id kopi-test-1
 ```
