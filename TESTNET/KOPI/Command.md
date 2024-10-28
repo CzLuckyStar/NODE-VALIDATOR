@@ -47,43 +47,43 @@ kopid q bank balances $(kopid keys show wallet -a)
 ### Withdraw rewards from all validators
 
 ```
-kopid tx distribution withdraw-all-rewards --from wallet --chain-id kopi-test-4 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
+kopid tx distribution withdraw-all-rewards --from wallet --chain-id kopi-test-5 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
 ```
 
 ### Withdraw rewards and commissions from your validator
 
 ```
-kopid tx distribution withdraw-rewards $(kopid keys show wallet --bech val -a) --commission --from wallet --chain-id kopi-test-4 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
+kopid tx distribution withdraw-rewards $(kopid keys show wallet --bech val -a) --commission --from wallet --chain-id kopi-test-5 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
 ```
 
 ### Delegate tokens to yourself
 
 ```
-kopid tx staking delegate $(kopid keys show wallet --bech val -a) 1000000ukopi --from wallet --chain-id kopi-test-4 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
+kopid tx staking delegate $(kopid keys show wallet --bech val -a) 1000000ukopi --from wallet --chain-id kopi-test-5 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
 ```
 
 ### Delegate tokens to validator
 
 ```
-kopid tx staking delegate <TO_VALOPER_ADDRESS> 1000000ukopi --from wallet --chain-id kopi-test-4 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
+kopid tx staking delegate <TO_VALOPER_ADDRESS> 1000000ukopi --from wallet --chain-id kopi-test-5 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
 ```
 
 ### Redelegate tokens to another validator
 
 ```
-kopid tx staking redelegate $(kopid keys show wallet --bech val -a) <TO_VALOPER_ADDRESS> 1000000ukopi --from wallet --chain-id kopi-test-4 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
+kopid tx staking redelegate $(kopid keys show wallet --bech val -a) <TO_VALOPER_ADDRESS> 1000000ukopi --from wallet --chain-id kopi-test-5 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
 ```
 
 ### Unbond tokens from your validator
 
 ```
-kopid tx staking unbond $(kopid keys show wallet --bech val -a) 1000000ukopi --from wallet --chain-id kopi-test-4 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
+kopid tx staking unbond $(kopid keys show wallet --bech val -a) 1000000ukopi --from wallet --chain-id kopi-test-5 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
 ```
 
 ### Send tokens to the wallet
 
 ```
-kopid tx bank send wallet <TO_WALLET_ADDRESS> 1000000ukopi --from wallet --chain-id kopi-test-4 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
+kopid tx bank send wallet <TO_WALLET_ADDRESS> 1000000ukopi --from wallet --chain-id kopi-test-5 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
 ```
 
 ## Validator management
@@ -126,7 +126,7 @@ kopid tx staking edit-validator \
   --details "YOUR_DETAILS" \
   --website "YOUR_WEBSITE_URL" \
   --security-contact "YOUR_EMAIL_ADDRESS" \
-  --chain-id kopi-test-4 \
+  --chain-id kopi-test-5 \
   --commission-rate 0.05 \
   --from wallet \
   --gas-adjustment 1.4 \
@@ -144,7 +144,7 @@ kopid query slashing signing-info $(kopid tendermint show-validator)
 ### Unjail validator
 
 ```
-kopid tx slashing unjail --from wallet --chain-id kopi-test-4 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
+kopid tx slashing unjail --from wallet --chain-id kopi-test-5 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
 ```
 
 ## Governance
@@ -178,25 +178,25 @@ kopid query gov proposal 1
 ### Vote “YES”
 
 ```
-kopid tx gov vote 1 yes --from wallet --chain-id kopi-test-4 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
+kopid tx gov vote 1 yes --from wallet --chain-id kopi-test-5 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
 ```
 
 ### Vote “NO”
 
 ```
-kopid tx gov vote 1 no --from wallet --chain-id kopi-test-4 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
+kopid tx gov vote 1 no --from wallet --chain-id kopi-test-5 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
 ```
 
 ### Vote “ABSTAIN”
 
 ```
-kopid tx gov vote 1 abstain --from wallet --chain-id kopi-test-4 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
+kopid tx gov vote 1 abstain --from wallet --chain-id kopi-test-5 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
 ```
 
 ### Vote “NOWITHVETO”
 
 ```
-kopid tx gov vote 1 NoWithVeto --from wallet --chain-id kopi-test-4 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
+kopid tx gov vote 1 NoWithVeto --from wallet --chain-id kopi-test-5 --gas-adjustment 1.4 --gas auto --gas-prices 0ukopi -y
 ```
 
 ## Maintenance
