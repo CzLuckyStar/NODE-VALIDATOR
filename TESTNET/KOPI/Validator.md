@@ -43,7 +43,6 @@ nano validator.json
 ```
 kopid tx staking create-validator $HOME/.kopid/config/validator.json \
   --from wallet \
-  --keyring-backend file \
   --chain-id kopi-test-5
 ```
 # END VALIDATOR
