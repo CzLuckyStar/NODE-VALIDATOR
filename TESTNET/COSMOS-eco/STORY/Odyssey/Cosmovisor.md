@@ -335,7 +335,33 @@ curl -s localhost:${STORY_PORT}657/status | jq .result.sync_info.catching_up
 ```
 
 
-# END
+# END SETUP:
+
+
+## Note
+
+**From now please do not stop and restart node before block 858,000 . Because it will run forcely with new binary.**
+
+If you need to restart the node unexpectedly, please setup again:
+
+### Remove folder
+```
+rm -rf $HOME/.story/story/cosmovisor/upgrades/v0.13.0
+```
+
+### Remove symlink:
+```
+rm $HOME/.story/story/cosmovisor/current
+```
+
+### Setup symlink v0.12.1 back:
+```
+ln -s $HOME/.story/story/cosmovisor/upgrades/v0.12.1 $HOME/.story/story/cosmovisor/current
+```
+
+
+### _Finally Start node & setup v0.13.0 with Cosmosvisor again._
+
 
 
 
