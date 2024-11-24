@@ -26,7 +26,7 @@ source $HOME/.bash_profile
 or just this to use go on other user:
 ```
 [ ! -f $HOME/.bash_profile ] && touch $HOME/.bash_profile
-echo "export PATH=$PATH:/usr/local/go/bin:~/go/bin" >> $HOME/.bash_profile
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 [ ! -d $HOME/go/bin ] && mkdir -p $HOME/go/bin
 ```
