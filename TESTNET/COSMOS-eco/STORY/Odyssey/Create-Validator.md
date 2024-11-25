@@ -27,10 +27,12 @@ Your EVM Private Key saved to: `/root/.story/story/config/private_key.txt`
 Note that to participate in consensus, at least `1 IP` must be staked (equivalent to `1000000000000000000 wei`
 )!
 
-Faucet link: 
-```
+Faucet link: https://docs.story.foundation/docs/story-network#-faucets
+
+https://faucet.quicknode.com/story/odyssey
+
 https://faucet.story.foundation/
-```
+
 
 ```
 story validator create --stake 1000000000000000000 --private-key "your_private_key"
